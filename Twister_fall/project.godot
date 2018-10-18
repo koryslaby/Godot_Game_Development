@@ -1,0 +1,30 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="Twister_fall"
+run/main_scene="res://scenes/StartUpScreen.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=750
+window/size/height=1334
+window/size/test_width=750
+window/size/test_height=1334
+window/handheld/orientation="portrait"
+window/handheld/emulate_touchscreen=true
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

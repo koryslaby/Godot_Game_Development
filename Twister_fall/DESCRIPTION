@@ -1,0 +1,24 @@
+This game will be a block based game where blocks will be falling down
+each one will be a different color and you have to match the collors.
+
+also they will have random numbers at which you can increase or decrease 
+based on which way you rotate them.
+
+As the progress they build up points and they can buy power ups with them.
+
+the block with the highest number changes the collor of the bottom block
+makes turns into one block of that collor.
+
+when the blocks reach 10 they turn black and no longer can blend.
+
+different things to think about(blocks are):
+-different collors but the same number
+	
+-same collor different numbers
+	add the numbers up creat one block
+
+-same collor same number
+	disapear
+-differenct collor different number
+	highest number changes the block collor
+	bottom block gets the numbers added up 
