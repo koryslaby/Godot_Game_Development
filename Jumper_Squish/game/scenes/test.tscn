@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/player2.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100, 10 )
+
+[node name="test" type="Node2D"]
+
+[node name="test_platform" type="StaticBody2D" parent="." index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="collision" type="CollisionShape2D" parent="test_platform" index="0"]
+
+position = Vector2( 365.696, 574.792 )
+shape = SubResource( 1 )
+
+[node name="player2" parent="." index="1" instance=ExtResource( 1 )]
+
+position = Vector2( 369.85, 353.797 )
+
+

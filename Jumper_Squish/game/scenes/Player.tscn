@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/player_test.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "test_default",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+
+position = Vector2( 385.812, 80.1688 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "collision" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Player_collision" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="player_texture" type="AnimatedSprite" parent="." index="1"]
+
+frames = SubResource( 2 )
+animation = "test_default"
+
+[node name="ground_detection" type="RayCast2D" parent="." index="2"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+
