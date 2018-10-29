@@ -11,6 +11,9 @@ var inclose = false setget set_inclose,get_inclose
 var next_level setget set_next_level,get_next_level
 signal inclosure_end
 var x = 1
+var screen_half 
+var check_point_right
+var check_point_left
 
 var left_vel= Vector2(1,0) setget set_left_vel
 var right_vel = Vector2(-1,0) setget set_right_vel
@@ -38,32 +41,23 @@ func _ready():
 	var left_w = (left_sprite.get_sprite_frames().get_frame("default", 0).get_width() - col_margin)/2
 	var right_h = (right_sprite.get_sprite_frames().get_frame("default", 0).get_height() - col_margin)/2
 	var right_w = (right_sprite.get_sprite_frames().get_frame("default", 0).get_width() - col_margin)/2
-	var colShapeRight = Vector2(right_w, right_h)
+	var colShapeRight = Vector2(right_w-1, right_h)
 	var colShapeLeft = Vector2(left_w, left_h)
 	right.add_to_group("levels")
 	left.add_to_group("levels")
+	screen_half = get_viewport_rect().size.x/2
 	inclose = true
-	
-	
 	right_collision.get_shape().set_extents(colShapeRight)
 	left_collision.get_shape().set_extents(colShapeLeft)
+	check_point_right = right_collision.shape.get_extents().x
+	check_point_left = left_collision.shape.get_extents().x/2
+ 
+	print("right collision is: ", right_collision.get_shape().get_extents())
 
 func _process(delta):
-	if x == 1:
-		var left_instance_id = get_instance_id()
-		var right_instance_id = right_collision.get_instance_id()
-		var right_shape = right_collision.get_shape()
-		var left_shape = left_collision.get_shape()
-		var node_id = get_instance_id()
-		var left_a = left.get_shape_owners()
-		var right_a = right.get_shape_owners()
-		var left_transform = right.shape_owner_get_transform(right_a[0])
-		var right_transform = left.shape_owner_get_transform(left_a[0])
-		print("right_transform is: ", right_transform)
-		print("collide is: ", right_collision.shape.collide(right_transform, left_shape, left_transform))
-	x += 1
 	
-	if inclose == true:
+	var check_point = right.position.x - check_point_right
+	if inclose == true && check_point > screen_half:
 		var right_pos = right.get_position()
 		var left_pos = left.get_position()
 		right_pos += right_vel
