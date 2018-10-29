@@ -10,7 +10,9 @@ var col_margin = 3
 var inclose = false setget set_inclose,get_inclose
 var next_level setget set_next_level,get_next_level
 signal inclosure_end
-var x = 1
+signal move_camera
+var camera_mover = Vector2(0,0)
+var signal_emit = true
 var screen_half 
 var check_point_right
 var check_point_left
@@ -46,13 +48,12 @@ func _ready():
 	right.add_to_group("levels")
 	left.add_to_group("levels")
 	screen_half = get_viewport_rect().size.x/2
-	inclose = true
 	right_collision.get_shape().set_extents(colShapeRight)
 	left_collision.get_shape().set_extents(colShapeLeft)
 	check_point_right = right_collision.shape.get_extents().x
 	check_point_left = left_collision.shape.get_extents().x/2
+	camera_mover.y = left_h * 2
  
-	print("right collision is: ", right_collision.get_shape().get_extents())
 
 func _process(delta):
 	
@@ -64,14 +65,23 @@ func _process(delta):
 		left_pos += left_vel
 		right.set_position(right_pos)
 		left.set_position(left_pos)
+		
+	if check_point <= screen_half && signal_emit == true:
+		emit_signal("inclosure_end")
+		emit_signal("move_camera", camera_mover)
+		signal_emit = false
+		
 
 func chain():
-	print("chain")
-	self.set_inclose(true)
-	
+	inclose = true
 
-func _on_Levels_inclosure_end():
+func _on_levels_s_inclosure_end():
 	if self.get_next_level() != null:
 		self.get_next_level().chain()
+
+
+
+
+
 
 
