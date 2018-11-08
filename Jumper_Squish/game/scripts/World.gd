@@ -10,17 +10,36 @@ var spawn = Vector2(0,1290)
 var camera_start_position = Vector2()
 var level_margin = 2
 var max_levels = 100
+var left_speed_set = Vector2(0,0)
+var right_speed_set = Vector2(0,0)
 
+var diff_speeds = false setget set_diff_speeds
+var collors = false setget set_collors
+var diff_heights = false setget set_diff_heights
+
+static func set_diff_speeds(value):
+	diff_speeds = value
+
+static func set_collors(value):
+	collors = value
+
+static func set_diff_heights(value):
+	diff_heights = value
 
 func _ready():
 	start.add_to_group("base")
 	var last_level
+	randomize()
 	
 	var start = self.spawn_levels()
 	camera_start_position = camera.get_position()
 	start.chain()
-	
-	
+
+func random_speeds(level):
+	var speeds = [1,2,3,4,5]
+	var vel = speeds[round(rand_range(0,4))]
+	level.set_left_vel(vel)
+	level.set_right_vel(vel)
 
 func spawn_levels():
 	var last_level
@@ -29,6 +48,12 @@ func spawn_levels():
 		var new_level = Levels.instance()
 		add_child_below_node(player, new_level)
 		new_level.set_position(spawn)
+		if diff_speeds == true:
+			random_speeds(new_level)
+		if collors == true:
+			pass
+		if diff_heights == true:
+			pass
 		spawn.y -= 90 - level_margin
 		if i > 0:
 			last_level.set_next_level(new_level)
@@ -36,6 +61,7 @@ func spawn_levels():
 			start = new_level
 		last_level = new_level
 		new_level.connect("move_camera", self, "_on_new_level_move_camera")
+		
 		
 	return start
 

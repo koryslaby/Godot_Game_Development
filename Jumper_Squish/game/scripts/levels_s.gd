@@ -20,17 +20,26 @@ var check_point_left
 var left_vel= Vector2(1,0) setget set_left_vel
 var right_vel = Vector2(-1,0) setget set_right_vel
 
+var left_height setget set_left_height
+var right_height setget set_right_height
+
+func set_left_height(value):
+	left_height = value
+
+func set_right_height(value):
+	right_height = value
+	
 func set_next_level(value):
 	next_level = value
 
 func get_next_level():
 	return next_level
 
-func set_left_vel(value, object):
-	object = value
+func set_left_vel(value):
+	left_vel.x = value
 
-func set_right_vel(value, object):
-	object = value
+func set_right_vel(value):
+	right_vel.x = -(value)
 
 func get_inclose():
 	return inclose
@@ -54,9 +63,7 @@ func _ready():
 	check_point_left = left_collision.shape.get_extents().x/2
 	camera_mover.y = left_h * 2
  
-
-func _process(delta):
-	
+func inclose():
 	var check_point = right.position.x - check_point_right
 	if inclose == true && check_point > screen_half:
 		var right_pos = right.get_position()
@@ -70,6 +77,9 @@ func _process(delta):
 		emit_signal("inclosure_end")
 		emit_signal("move_camera", camera_mover)
 		signal_emit = false
+
+func _process(delta):
+	inclose()
 		
 
 func chain():
