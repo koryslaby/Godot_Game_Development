@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/PNG/750*1334.png" type="Texture" id=2]
 [ext_resource path="res://assets/PNG/320*90.png" type="Texture" id=3]
 
-[node name="Menu_Screen" type="Control" index="0"]
+[node name="Menu_Screen" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0

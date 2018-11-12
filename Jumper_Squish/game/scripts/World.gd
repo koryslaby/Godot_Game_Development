@@ -13,19 +13,6 @@ var max_levels = 100
 var left_speed_set = Vector2(0,0)
 var right_speed_set = Vector2(0,0)
 
-var diff_speeds = false setget set_diff_speeds
-var collors = false setget set_collors
-var diff_heights = false setget set_diff_heights
-
-static func set_diff_speeds(value):
-	diff_speeds = value
-
-static func set_collors(value):
-	collors = value
-
-static func set_diff_heights(value):
-	diff_heights = value
-
 func _ready():
 	start.add_to_group("base")
 	var last_level
@@ -48,13 +35,14 @@ func spawn_levels():
 		var new_level = Levels.instance()
 		add_child_below_node(player, new_level)
 		new_level.set_position(spawn)
-		if diff_speeds == true:
+		if Global.diff_speeds == true:
 			random_speeds(new_level)
-		if collors == true:
+		if Global.collors == true:
 			pass
-		if diff_heights == true:
-			pass
-		spawn.y -= 90 - level_margin
+		if Global.diff_heights == true:
+			new_level.randome_level_heights()
+		spawn.y -= new_level.get_text_height()
+		print("spawn point is: ", spawn.y)
 		if i > 0:
 			last_level.set_next_level(new_level)
 		if i == 0:
@@ -66,7 +54,6 @@ func spawn_levels():
 	return start
 
 func _on_new_level_move_camera(camera_mover):
-	print("on new level move camera")
 	var camera_movement = camera_start_position - camera_mover
 	camera_tween.interpolate_property(camera, "position", camera_start_position, camera_movement, 1,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	camera_tween.start()

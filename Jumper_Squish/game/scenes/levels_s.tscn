@@ -1,43 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/levels_s.gd" type="Script" id=1]
-[ext_resource path="res://assets/Level.png" type="Texture" id=2]
-
-[sub_resource type="SpriteFrames" id=1]
-
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": false,
-"name": "default",
-"speed": 5.0
-} ]
+[ext_resource path="res://assets/Level_Sizes/Level.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
 
+resource_local_to_scene = true
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
+_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="RectangleShape2D" id=3]
 
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=4]
-
+resource_local_to_scene = true
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
+_sections_unfolded = [ "Resource" ]
 
-[node name="levels_s" type="Node2D"]
+[node name="levels_s" type="Node2D" index="0"]
 
 position = Vector2( 0, 635.602 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="right" type="StaticBody2D" parent="." index="0"]
 
@@ -51,14 +34,15 @@ friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 
-[node name="right_sprite" type="AnimatedSprite" parent="right" index="0"]
+[node name="right_sprite" type="Sprite" parent="right" index="0"]
 
-frames = SubResource( 1 )
-animation = "default"
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
 [node name="right_collision" type="CollisionShape2D" parent="right" index="1"]
 
 shape = SubResource( 2 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="left" type="StaticBody2D" parent="." index="1"]
 
@@ -70,14 +54,14 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="left_sprite" type="AnimatedSprite" parent="left" index="0"]
+[node name="left_sprite" type="Sprite" parent="left" index="0"]
 
-frames = SubResource( 3 )
-animation = "default"
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="left_collision" type="CollisionShape2D" parent="left" index="1"]
 
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [connection signal="inclosure_end" from="." to="." method="_on_levels_s_inclosure_end"]
 

@@ -14,6 +14,10 @@ config/name="Jumber_Sqush"
 run/main_scene="res://scenes/Start_Screen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://scripts/Global.gd"
+
 [display]
 
 window/size/width=750

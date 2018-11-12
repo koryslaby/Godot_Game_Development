@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Level.png-3000ee4985b44fca25d67c4a701668f9.stex"
+path="res://.import/375*135.png-a553baf6561a6f6d1d08165c2fcd55d4.stex"
 
 [deps]
 
-source_file="res://assets/Level.png"
-dest_files=[ "res://.import/Level.png-3000ee4985b44fca25d67c4a701668f9.stex" ]
+source_file="res://assets/Level_Sizes/375*135.png"
+dest_files=[ "res://.import/375*135.png-a553baf6561a6f6d1d08165c2fcd55d4.stex" ]
 
 [params]
 
