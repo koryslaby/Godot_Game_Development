@@ -1,11 +1,11 @@
 extends Control
 
 var scene = load("res://scenes/World.tscn")
+onready var screen_size = self.get_viewport_rect().size
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	print("screen size is: ", screen_size)
+	Global.set_screen_size(screen_size)
 
 
 func _on_Button1_button_up():

@@ -6,6 +6,8 @@ onready var right_collision = get_node("right/right_collision")
 onready var left_collision = get_node("left/left_collision")
 onready var left_sprite = get_node("left/left_sprite")
 onready var right_sprite = get_node("right/right_sprite")
+onready var level_counter = get_node("Level_counter")
+onready var position_detect = get_node("Position")
 var col_margin = 3
 var inclose = false setget set_inclose,get_inclose
 var next_level setget set_next_level,get_next_level
@@ -21,6 +23,25 @@ var level_size = ["res://assets/Level_Sizes/Level.png", "res://assets/Level_Size
 
 var left_vel= Vector2(1,0) setget set_left_vel
 var right_vel = Vector2(-1,0) setget set_right_vel
+
+#temp vars/funcs
+var print_level = true
+
+func display_level_counter():
+	var pos = Vector2(self.get_position().x, self.get_text_height()/2)
+	self.incrument_level_counter()
+	var num = Global.get_level_num()
+	var display_num = str(num)
+	level_counter.set_text(display_num)
+	level_counter.set_position(pos)
+
+func incrument_level_counter():
+	Global.set_level_num(1);
+
+func display_position(value):
+	var pos = str(value)
+	position_detect.set_text(pos)
+#temp vars/funcs
 
 
 func get_text_height():
@@ -53,11 +74,18 @@ func randome_level_heights():
 	texture_height = texture.get_height()
 	collision_maker()
 
+func ChangePositionInParent(height):
+	var new_pos_left = Vector2(0,height)
+	var new_pos_right = Vector2(Global.get_screen_size().x, height)
+	left.set_position(new_pos_left)
+	right.set_position(new_pos_right)
+
 func collision_maker():
 	var left_h = (left_sprite.texture.get_height() - col_margin)/2
 	var left_w = (left_sprite.texture.get_width() - col_margin)/2
 	var right_h = (right_sprite.texture.get_height() - col_margin)/2
 	var right_w = (right_sprite.texture.get_width() - col_margin)/2
+	ChangePositionInParent(right_h)
 	var colShapeRight = Vector2(right_w-1, right_h)
 	var colShapeLeft = Vector2(left_w, left_h)
 	right.add_to_group("levels")
@@ -70,10 +98,11 @@ func collision_maker():
 	camera_mover.y = left_h * 2
 
 func _ready():
-	pass
+	self.collision_maker()
  
 func inclose():
 	var check_point = right.position.x - check_point_right
+	
 	if inclose == true && check_point > screen_half:
 		collision_maker()
 		var right_pos = right.get_position()
@@ -86,6 +115,7 @@ func inclose():
 	if check_point <= screen_half && signal_emit == true:
 		emit_signal("inclosure_end")
 		emit_signal("move_camera", camera_mover)
+		
 		signal_emit = false
 
 func _process(delta):
