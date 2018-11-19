@@ -20,6 +20,7 @@ func _ready():
 	
 	var start = self.spawn_levels()
 	camera_start_position = camera.get_position()
+	print("starting chain")
 	start.chain()
 
 func random_speeds(level):
@@ -40,18 +41,8 @@ func spawn_levels():
 			pass
 		if Global.diff_heights == true:
 			new_level.randome_level_heights()
-		if i == 0:
-			spawn.y += new_level.get_text_height()
 		spawn.y -= new_level.get_text_height()
-		print("--------------------------------")
-		print("in levels infor: ")
 		new_level.display_level_counter()
-	
-		print("--------------------------------")
-		print("level_number is: ", Global.get_level_num())
-		print("spawning info")
-		print("spawn.y is: ", spawn.y)
-		print("new_level.get_textheight is: ", new_level.get_text_height())
 		new_level.set_position(spawn)
 		new_level.display_position(new_level.get_position().y)
 		if i > 0:

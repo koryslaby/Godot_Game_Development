@@ -39,8 +39,10 @@ func incrument_level_counter():
 	Global.set_level_num(1);
 
 func display_position(value):
+	var new_pos = Vector2(position_detect.get_position().x, self.get_text_height()/4)
 	var pos = str(value)
 	position_detect.set_text(pos)
+	position_detect.set_position(new_pos)
 #temp vars/funcs
 
 
@@ -85,7 +87,7 @@ func collision_maker():
 	var left_w = (left_sprite.texture.get_width() - col_margin)/2
 	var right_h = (right_sprite.texture.get_height() - col_margin)/2
 	var right_w = (right_sprite.texture.get_width() - col_margin)/2
-	ChangePositionInParent(right_h)
+	ChangePositionInParent(left_sprite.texture.get_height()/2)
 	var colShapeRight = Vector2(right_w-1, right_h)
 	var colShapeLeft = Vector2(left_w, left_h)
 	right.add_to_group("levels")
@@ -104,7 +106,7 @@ func inclose():
 	var check_point = right.position.x - check_point_right
 	
 	if inclose == true && check_point > screen_half:
-		collision_maker()
+		#collision_maker()
 		var right_pos = right.get_position()
 		var left_pos = left.get_position()
 		right_pos += right_vel
