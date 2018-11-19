@@ -21,6 +21,7 @@ To Do's:
 - Speed up game drop timer.
 
 # ----------Jumper Squish----------:
+Does not have a main scene yet so if you wanna try it out you have to run the World scene.
 
 Description:
   Game where the player starts down in a gully of sorts with a problem, there seems to be rocks coming in to squish them.The 
