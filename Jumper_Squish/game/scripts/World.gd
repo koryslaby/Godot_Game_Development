@@ -5,6 +5,7 @@ onready var player = get_node("player2")
 onready var start = get_node("Start")
 onready var camera = get_node("level_movement")
 onready var camera_tween = get_node("smoth_camera_movement")
+onready var top = get_node("top")
 var closing_level = 0 
 var spawn = Vector2(0,1333)
 var camera_start_position = Vector2()
@@ -33,7 +34,7 @@ func spawn_levels():
 	var start
 	for i in range(0,max_levels):
 		var new_level = Levels.instance()
-		add_child_below_node(player, new_level)
+		add_child_below_node(top , new_level)
 		if Global.diff_speeds == true:
 			random_speeds(new_level)
 		if Global.collors == true:

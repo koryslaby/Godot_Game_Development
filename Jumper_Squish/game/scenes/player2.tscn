@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/player2.gd" type="Script" id=1]
 [ext_resource path="res://assets/Player_Anim/Player_start2.png" type="Texture" id=2]
@@ -6,30 +6,75 @@
 [ext_resource path="res://assets/Player_Anim/PlayerJump1.png" type="Texture" id=4]
 [ext_resource path="res://assets/Player_Anim/PlayerJump2.png" type="Texture" id=5]
 [ext_resource path="res://assets/Player_Anim/Player2.png" type="Texture" id=6]
+[ext_resource path="res://assets/Player_Anim/Playersquish1.png" type="Texture" id=7]
+[ext_resource path="res://assets/Player_Anim/Playersquish1-5.png" type="Texture" id=8]
+[ext_resource path="res://assets/Player_Anim/Playersquish2.png" type="Texture" id=9]
+[ext_resource path="res://assets/Player_Anim/Playersquish3-5.png" type="Texture" id=10]
+[ext_resource path="res://assets/Player_Anim/Playersquish3.png" type="Texture" id=11]
+[ext_resource path="res://assets/Player_Anim/Playersquish4.png" type="Texture" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "default",
-"speed": 4.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "squish",
-"speed": 5.0
+"speed": 3.5
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "Jump_up",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), null ],
+"loop": false,
+"name": "player_dead",
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 1.0
+angular_velocity = -4.65661e-10
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 30.0
+scale_random = 0.0
+color = Color( 0.742188, 0.181557, 0.181557, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 1.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Resource", "Scale", "Spread" ]
 
 [node name="player2" type="RigidBody2D" index="0"]
 
@@ -60,7 +105,7 @@ _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pick
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
+frame = 2
 playing = true
 _sections_unfolded = [ "Transform", "Z Index" ]
 
@@ -74,7 +119,28 @@ enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 100 )
 collision_mask = 1
+_sections_unfolded = [ "Transform" ]
 
-[connection signal="jump_anim_done" from="." to="." method="_on_player2_jump_anim_done"]
+[node name="explosions" type="Particles2D" parent="." index="3"]
+
+emitting = false
+amount = 20
+lifetime = 1.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Time", "Transform", "Visibility", "Z Index" ]
 
 

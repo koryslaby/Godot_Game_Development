@@ -17,14 +17,11 @@ custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="levels_s" type="Node2D"]
+[node name="levels_s" type="Node2D" index="0"]
 
 position = Vector2( 6.66899, 150.579 )
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="right" type="StaticBody2D" parent="." index="0"]
 
@@ -37,9 +34,6 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index" ]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="right_sprite" type="Sprite" parent="right" index="0"]
 
@@ -61,9 +55,6 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="left_sprite" type="Sprite" parent="left" index="0"]
 
@@ -74,16 +65,25 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 shape = SubResource( 2 )
 
+[node name="player_detector" type="RayCast2D" parent="left" index="2"]
+
+position = Vector2( 188.834, -35.6804 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 30 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
 [node name="Level_counter" type="Label" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 105.0
-margin_top = -34.0
-margin_right = 145.0
-margin_bottom = -3.0
+margin_left = 106.0
+margin_top = -30.0
+margin_right = 146.0
+margin_bottom = 1.0
 rect_scale = Vector2( 5, 5 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
