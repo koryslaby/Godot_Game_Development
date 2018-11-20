@@ -21,7 +21,7 @@ To Do's:
 - Speed up game drop timer.
 
 # ----------Jumper Squish----------:
-Does not have a main scene yet so if you wanna try it out you have to run the World scene.
+Has main scene and start to GUI.
 
 Description:
   Game where the player starts down in a gully of sorts with a problem, there seems to be rocks coming in to squish them.The 
@@ -29,11 +29,18 @@ player must jump to escape before they are killed. Each set of rocks has a collo
 Either the game will be level based or go untill the player dies.
 
 Implements:
-- Level Generation with randomly selected color coded rocks.
+- Rock levels that use staticbody2d.
+- Rock levels that will move at different speeds.
+- Rock level Generation with randomly selected color coded rocks.
 - A player that uses a rigid body.
+- Animated Sprite 
+- The use of signals to trigger animations and game actions.
+- Global script for variables that can be past between scenes.
+
 
 To Do's:
 - Work in progress
 - Everything with test textures at the moment.
-- Working on levels that will squish the player. Testing out what object would work the best.
-- Working on Player. Have tested out different Collision Objects and decided on a rigidbody2d.
+- Finnish player animation.
+- More game modes
+- Finnish GUI.
