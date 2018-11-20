@@ -20,11 +20,10 @@ func _ready():
 	
 	var start = self.spawn_levels()
 	camera_start_position = camera.get_position()
-	print("starting chain")
 	start.chain()
 
 func random_speeds(level):
-	var speeds = [1,2,3,4,5]
+	var speeds = [1,1.5,2,2.5,3]
 	var vel = speeds[round(rand_range(0,4))]
 	level.set_left_vel(vel)
 	level.set_right_vel(vel)

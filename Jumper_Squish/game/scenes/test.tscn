@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 100, 10 )
 
-[node name="test" type="Node2D"]
+[node name="test" type="Node2D" index="0"]
 
 [node name="test_platform" type="StaticBody2D" parent="." index="0"]
 
@@ -18,6 +18,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index" ]
 
 [node name="collision" type="CollisionShape2D" parent="test_platform" index="0"]
 
@@ -27,5 +28,8 @@ shape = SubResource( 1 )
 [node name="player2" parent="." index="1" instance=ExtResource( 1 )]
 
 position = Vector2( 369.85, 353.797 )
+linear_damp = 0.0
+angular_damp = 0.0
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform", "Visibility", "Z Index" ]
 
 

@@ -35,7 +35,7 @@ shape = SubResource( 1 )
 [node name="player2" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 375, 1237.4 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform" ]
 
 [node name="level_movement" type="Camera2D" parent="." index="2"]
 
