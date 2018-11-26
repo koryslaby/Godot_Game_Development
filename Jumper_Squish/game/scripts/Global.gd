@@ -7,6 +7,7 @@ var level = 0 setget set_level_num,get_level_num
 var screen_size = Vector2(750,1333) setget set_screen_size,get_screen_size
 var player_dead = false setget set_player_dead, get_player_dead
 var send_player_dead_signal = false
+var send_game_over_signal = false
 signal player_dead
 
 func _process(delta):

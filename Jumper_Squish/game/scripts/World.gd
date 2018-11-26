@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var Levels = preload("res://scenes/levels_s.tscn")
+onready var player_died_popup = preload("res://scenes/player_died.tscn")
 onready var player = get_node("player2")
 onready var start = get_node("Start")
 onready var camera = get_node("level_movement")
@@ -15,6 +16,7 @@ var left_speed_set = Vector2(0,0)
 var right_speed_set = Vector2(0,0)
 
 func _ready():
+	Global.connect("player_dead", self, "_on_Global_player_dead")
 	start.add_to_group("base")
 	var last_level
 	randomize()
@@ -60,6 +62,15 @@ func _on_new_level_move_camera(camera_mover):
 	camera_tween.interpolate_property(camera, "position", camera_start_position, camera_movement, 1,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	camera_tween.start()
 	camera_start_position = camera_movement
+
+func _on_Global_player_dead():
+	var new_popup = player_died_popup.instance()
+	var death_pos = camera_start_position.y
+	var pos = Vector2(Global.screen_size.x/2, death_pos)
+	add_child(new_popup)
+	new_popup.set_position(pos)
+	print("attempting to pause scene")
+	new_popup.show()
 
 func _process(delta):
 	pass

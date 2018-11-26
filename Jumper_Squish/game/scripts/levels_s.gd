@@ -130,7 +130,8 @@ func inclose():
 		
 	if check_point <= screen_half && signal_emit == true:
 		emit_signal("inclosure_end")
-		emit_signal("move_camera", camera_mover)
+		if Global.player_dead == false:
+			emit_signal("move_camera", camera_mover)
 		
 		signal_emit = false
 
@@ -153,8 +154,6 @@ func chain():
 func _on_levels_s_inclosure_end():
 	if self.get_next_level() != null:
 		self.get_next_level().chain()
-
-
 
 
 
