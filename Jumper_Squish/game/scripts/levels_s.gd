@@ -28,7 +28,6 @@ var left_vel= Vector2(1,0) setget set_left_vel
 var right_vel = Vector2(-1,0) setget set_right_vel
 
 #temp vars/funcs
-var print_level = true
 
 func display_level_counter():
 	var pos = Vector2(self.get_position().x, self.get_text_height()/2)
@@ -91,7 +90,7 @@ func collision_maker():
 	var right_h = (right_sprite.texture.get_height() - col_margin)/2
 	var right_w = (right_sprite.texture.get_width() - col_margin)/2
 	ChangePositionInParent(left_sprite.texture.get_height()/2)
-	player_detector_height(left_h * 2)
+	player_detect_height(left_h * 2)
 	var colShapeRight = Vector2(right_w-1, right_h)
 	var colShapeLeft = Vector2(left_w, left_h)
 	right.add_to_group("levels")
@@ -103,7 +102,7 @@ func collision_maker():
 	check_point_left = left_collision.shape.get_extents().x/2
 	camera_mover.y = left_h * 2
 
-func player_detector_height(height):
+func player_detect_height(height):
 	var botom_margin = 10
 	var top_margin = 6
 	var pos = player_detector.get_position()
@@ -116,7 +115,7 @@ func player_detector_height(height):
 func _ready():
 	self.collision_maker()
  
-func inclose():
+func incloses():
 	var check_point = right.position.x - check_point_right
 	
 	if inclose == true && check_point > screen_half:
@@ -135,8 +134,9 @@ func inclose():
 		
 		signal_emit = false
 
+#warning-ignore:unused_argument
 func _process(delta):
-	inclose()
+	incloses()
 	var checking_player_collision = player_detector.get_collider()
 	if(checking_player_collision && player_collide == false):
 		detect_player_collision(checking_player_collision)
