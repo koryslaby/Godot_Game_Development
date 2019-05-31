@@ -4,123 +4,52 @@
 [ext_resource path="res://assets/Level_Sizes/Level.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-
 resource_local_to_scene = true
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="RectangleShape2D" id=2]
-
 resource_local_to_scene = true
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-_sections_unfolded = [ "Resource" ]
 
 [node name="levels_s" type="Node2D"]
-
 position = Vector2( 6.66899, 150.579 )
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="right" type="StaticBody2D" parent="." index="0"]
-
+[node name="right" type="StaticBody2D" parent="."]
 position = Vector2( 750, 0 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index" ]
 
-[node name="right_sprite" type="Sprite" parent="right" index="0"]
-
+[node name="right_sprite" type="Sprite" parent="right"]
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
-[node name="right_collision" type="CollisionShape2D" parent="right" index="1"]
-
+[node name="right_collision" type="CollisionShape2D" parent="right"]
 shape = SubResource( 1 )
-_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[node name="left" type="StaticBody2D" parent="." index="1"]
+[node name="left" type="StaticBody2D" parent="."]
 
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-
-[node name="left_sprite" type="Sprite" parent="left" index="0"]
-
+[node name="left_sprite" type="Sprite" parent="left"]
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="left_collision" type="CollisionShape2D" parent="left" index="1"]
-
+[node name="left_collision" type="CollisionShape2D" parent="left"]
 shape = SubResource( 2 )
 
-[node name="player_detector" type="RayCast2D" parent="left" index="2"]
-
+[node name="player_detector" type="RayCast2D" parent="left"]
 position = Vector2( 188.834, -35.6804 )
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 30 )
-collision_mask = 1
-_sections_unfolded = [ "Transform" ]
 
-[node name="Level_counter" type="Label" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Level_counter" type="Label" parent="."]
 margin_left = 106.0
 margin_top = -30.0
 margin_right = 146.0
 margin_bottom = 1.0
 rect_scale = Vector2( 5, 5 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "0"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 
-[node name="Position" type="Label" parent="." index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Position" type="Label" parent="."]
 margin_left = 523.0
 margin_top = -18.0
 margin_right = 670.0
 margin_bottom = 13.0
 rect_scale = Vector2( 3, 3 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "0
 "
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 
 [connection signal="inclosure_end" from="." to="." method="_on_levels_s_inclosure_end"]
-
-
