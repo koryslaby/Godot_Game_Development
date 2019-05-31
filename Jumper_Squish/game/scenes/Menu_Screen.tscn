@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/Menu_Screen.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Menu_Screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/PNG/750*1334.png" type="Texture" id=2]
 [ext_resource path="res://assets/PNG/320*90.png" type="Texture" id=3]
 

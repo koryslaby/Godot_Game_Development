@@ -20,11 +20,11 @@ func set_next_level(value):
 func get_next_level():
 	return next_level
 
-func set_left_vel(value, object):
-	object = value
+func set_left_vel(value):
+	left_vel = value
 
-func set_right_vel(value, object):
-	object = value
+func set_right_vel(value):
+	right_vel = value
 
 func get_inclose():
 	return inclose
@@ -45,6 +45,7 @@ func _ready():
 	right_collision.get_shape().set_extents(colShapeRight)
 	left_collision.get_shape().set_extents(colShapeLeft)
 
+#warning-ignore:unused_argument
 func _physics_process(delta):
 	if self.get_inclose() == true:
 		var collision_info_left = left.move_and_collide(left_vel)
