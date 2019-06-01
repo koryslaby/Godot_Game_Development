@@ -22,6 +22,13 @@ texture = ExtResource( 2 )
 [node name="right_collision" type="CollisionShape2D" parent="right"]
 shape = SubResource( 1 )
 
+[node name="right_color" type="ColorRect" parent="right"]
+margin_left = -192.85
+margin_top = -45.7282
+margin_right = 192.15
+margin_bottom = 46.2718
+color = Color( 0.894118, 0.239216, 0.0431373, 1 )
+
 [node name="left" type="StaticBody2D" parent="."]
 
 [node name="left_sprite" type="Sprite" parent="left"]
@@ -29,6 +36,13 @@ texture = ExtResource( 2 )
 
 [node name="left_collision" type="CollisionShape2D" parent="left"]
 shape = SubResource( 2 )
+
+[node name="left_color" type="ColorRect" parent="left"]
+margin_left = -192.407
+margin_top = -46.0
+margin_right = 192.593
+margin_bottom = 46.0
+color = Color( 0.894531, 0.24127, 0.0428113, 1 )
 
 [node name="player_detector" type="RayCast2D" parent="left"]
 position = Vector2( 188.834, -35.6804 )

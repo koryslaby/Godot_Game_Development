@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/test.gd" type="Script" id=1]
-[ext_resource path="res://scenes/levels_s.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/player2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/player2.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 10 )
@@ -16,10 +15,7 @@ script = ExtResource( 1 )
 position = Vector2( 365.696, 574.792 )
 shape = SubResource( 1 )
 
-[node name="levels_s" parent="." instance=ExtResource( 2 )]
-position = Vector2( -0.449158, 470.008 )
-
-[node name="player2" parent="." instance=ExtResource( 3 )]
+[node name="player2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 380.525, 443.609 )
 linear_damp = 0.0
 angular_damp = 0.0

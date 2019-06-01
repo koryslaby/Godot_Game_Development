@@ -2,6 +2,8 @@ extends Node2D
 
 onready var left = get_node("left")
 onready var right = get_node("right")
+onready var right_color = get_node("right/right_color")# The color triangle for right level
+onready var left_color = get_node("left/left_color")# The color triangle for left level
 onready var right_collision = get_node("right/right_collision")
 onready var left_collision = get_node("left/left_collision")
 onready var left_sprite = get_node("left/left_sprite")
@@ -23,6 +25,7 @@ var check_point_right
 var check_point_left
 var texture_height = 90 setget ,get_text_height
 var level_size = ["res://assets/Level_Sizes/Level.png", "res://assets/Level_Sizes/375*135.png","res://assets/Level_Sizes/375*180.png"]
+#var level_colors = [ Color( 1, 0, 0, 1)]
 
 var left_vel= Vector2(1,0) setget set_left_vel
 var right_vel = Vector2(-1,0) setget set_right_vel
@@ -98,6 +101,8 @@ func collision_maker():
 	screen_half = get_viewport_rect().size.x/2
 	right_collision.get_shape().set_extents(colShapeRight)
 	left_collision.get_shape().set_extents(colShapeLeft)
+	right_color.rect_size = Vector2(right_w*2, right_h*2)
+	left_color.rect_size = Vector2(left_w*2, left_h*2)
 	check_point_right = right_collision.shape.get_extents().x
 	check_point_left = left_collision.shape.get_extents().x/2
 	camera_mover.y = left_h * 2

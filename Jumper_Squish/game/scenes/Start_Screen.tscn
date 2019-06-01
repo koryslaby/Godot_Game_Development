@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Start_Screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/bernard-hermant-560223-unsplash.png" type="Texture" id=2]
-[ext_resource path="res://assets/Start_Button.png" type="Texture" id=3]
+[ext_resource path="res://assets/Title_Pic.png" type="Texture" id=3]
+[ext_resource path="res://assets/Start_Button.png" type="Texture" id=4]
+[ext_resource path="res://scenes/test.tscn" type="PackedScene" id=5]
 
 [node name="Start_Screen" type="Control"]
 anchor_right = 1.0
@@ -15,7 +17,26 @@ anchor_bottom = 1.0
 texture = ExtResource( 2 )
 expand = true
 
+[node name="Title" type="HBoxContainer" parent="."]
+editor/display_folded = true
+margin_top = 100.0
+margin_right = 1501.0
+margin_bottom = 520.0
+rect_scale = Vector2( 0.4, 0.4 )
+
+[node name="Left_Margin2" type="Control" parent="Title"]
+margin_right = 250.0
+margin_bottom = 520.0
+rect_min_size = Vector2( 250, 125 )
+
+[node name="TextureRect" type="TextureRect" parent="Title"]
+margin_left = 254.0
+margin_right = 1606.0
+margin_bottom = 520.0
+texture = ExtResource( 3 )
+
 [node name="Start_Button_Cont" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,7 +56,10 @@ margin_left = 149.0
 margin_right = 749.0
 margin_bottom = 194.0
 rect_min_size = Vector2( 600, 194 )
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 4 )
 expand = true
+
+[node name="test" parent="." instance=ExtResource( 5 )]
+position = Vector2( 7.35632, 490.253 )
 
 [connection signal="button_up" from="Start_Button_Cont/Start_Button" to="." method="_on_Start_Button_button_up"]
