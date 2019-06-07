@@ -8,7 +8,6 @@ onready var right_collision = get_node("right/right_collision")
 onready var left_collision = get_node("left/left_collision")
 onready var left_sprite = get_node("left/left_sprite")
 onready var right_sprite = get_node("right/right_sprite")
-onready var level_counter = get_node("Level_counter")
 onready var position_detect = get_node("Position")
 onready var player_detector = get_node("left/player_detector")
 var col_margin = 3
@@ -24,21 +23,13 @@ var screen_half
 var check_point_right
 var check_point_left
 var texture_height = 90 setget ,get_text_height
-var level_size = ["res://assets/Level_Sizes/Level.png", "res://assets/Level_Sizes/375*135.png","res://assets/Level_Sizes/375*180.png"]
+var level_size = ["res://assets/Level_Sizes/Level1.png", "res://assets/Level_Sizes/Level2.png","res://assets/Level_Sizes/Level3.png"]
 #var level_colors = [ Color( 1, 0, 0, 1)]
 
 var left_vel= Vector2(1,0) setget set_left_vel
 var right_vel = Vector2(-1,0) setget set_right_vel
 
 #temp vars/funcs
-
-func display_level_counter():
-	var pos = Vector2(self.get_position().x, self.get_text_height()/2)
-	self.incrument_level_counter()
-	var num = Global.get_level_num()
-	var display_num = str(num)
-	level_counter.set_text(display_num)
-	level_counter.set_position(pos)
 
 func incrument_level_counter():
 	Global.set_level_num(1);
@@ -79,7 +70,17 @@ func randome_level_heights():
 	left_sprite.set_texture(texture)
 	right_sprite.set_texture(texture)
 	texture_height = texture.get_height()
+	correct_color(size)
 	collision_maker()
+	
+
+func correct_color(setter):
+	var red = Color(1, 0, 0, 1)
+	var yellow = Color(.96, .97, .04, 1)
+	var green = Color(.11, .61, .11, 1)
+	var random_hights_colors = [green, yellow, red]
+	right_color.color = random_hights_colors[setter]
+	left_color.color = random_hights_colors[setter]
 
 func ChangePositionInParent(height):
 	var new_pos_left = Vector2(0,height)
@@ -101,11 +102,21 @@ func collision_maker():
 	screen_half = get_viewport_rect().size.x/2
 	right_collision.get_shape().set_extents(colShapeRight)
 	left_collision.get_shape().set_extents(colShapeLeft)
-	right_color.rect_size = Vector2(right_w*2, right_h*2)
-	left_color.rect_size = Vector2(left_w*2, left_h*2)
 	check_point_right = right_collision.shape.get_extents().x
 	check_point_left = left_collision.shape.get_extents().x/2
 	camera_mover.y = left_h * 2
+	collor_maker(left_w, left_h, right_w, right_h)
+
+# designed to asign the size of the rectangle responsible for the color of each level.
+func collor_maker(left_w, left_h, right_w, right_h):
+	var offset_shift = 0 #used to shift the color over
+	var offset_size = 0#used to increase the size
+	right_color.rect_size = Vector2(right_w*2+offset_size, right_h*2+offset_size)
+	left_color.rect_size = Vector2(left_w*2+offset_size, left_h*2+offset_size)
+	left_color.rect_position.x = -left_w - offset_shift
+	left_color.rect_position.y = -left_h - offset_shift
+	right_color.rect_position.x = -right_w - offset_shift
+	right_color.rect_position.y = -right_h - offset_shift
 
 func player_detect_height(height):
 	var botom_margin = 10

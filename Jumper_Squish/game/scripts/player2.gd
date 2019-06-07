@@ -6,6 +6,7 @@ onready var gd = get_node("ground_detector")
 onready var explosion = get_node("explosions")
 var offset = Vector2(0,0)
 var impulse = Vector2(0,-400)
+var jump = false
 
 func _ready():
 	print(Global.connect("player_dead", self, "_on_Global_player_dead"))
@@ -19,11 +20,12 @@ func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if event.is_action_pressed("Jump"):
+	if event.is_action_pressed("Jump") or jump == true:
 		if gd.is_colliding():
 			if(Global.get_player_dead() == false):
 				p_anim.set_animation("Jump_up")
 				apply_impulse(offset, impulse)
+	jump = false
 
 func _on_Global_player_dead():
 	self.set_mode(RigidBody2D.MODE_STATIC)
@@ -37,3 +39,8 @@ func _on_p_anim_animation_finished():
 	
 	if(p_anim.get_animation() == "Jump_up"):
 		p_anim.set_animation("default")
+
+
+func _on_TouchButton_released():
+	print("jumping will be done")
+	jump = true

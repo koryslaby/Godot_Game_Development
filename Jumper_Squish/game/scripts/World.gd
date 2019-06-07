@@ -39,9 +39,7 @@ func spawn_levels():
 		if Global.diff_heights == true:
 			new_level.randome_level_heights()
 		spawn.y -= new_level.get_text_height()
-		new_level.display_level_counter()
 		new_level.set_position(spawn)
-		new_level.display_position(new_level.get_position().y)
 		if i > 0:
 			last_level.set_next_level(new_level)
 		if i == 0:
