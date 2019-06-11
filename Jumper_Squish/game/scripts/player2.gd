@@ -7,12 +7,15 @@ onready var explosion = get_node("explosions")
 var offset = Vector2(0,0)
 var impulse = Vector2(0,-400)
 var jump = false
+signal animation_done
 
 func _ready():
 	print(Global.connect("player_dead", self, "_on_Global_player_dead"))
 	p_anim.connect("animation_finished", self, "_on_p_anim_animation_finished")
 	self.add_to_group("player")
 	self.set_mode(RigidBody2D.MODE_CHARACTER)
+	explosion.set_emitting(false)
+	collision.set_disabled(false)
 #warning-ignore:integer_division
 	collision.shape.extents.x = int(p_anim.get_sprite_frames().get_frame("default", 0).get_height())/2
 #warning-ignore:integer_division
@@ -28,6 +31,7 @@ func _input(event):
 	jump = false
 
 func _on_Global_player_dead():
+	print("player has died")
 	self.set_mode(RigidBody2D.MODE_STATIC)
 	collision.set_disabled(true)
 	p_anim.set_animation("player_dead")
@@ -42,5 +46,9 @@ func _on_p_anim_animation_finished():
 
 
 func _on_TouchButton_released():
-	print("jumping will be done")
 	jump = true
+
+
+func _on_player_anim_animation_finished():
+	if(p_anim.animation == "player_dead"):
+		emit_signal("animation_done")

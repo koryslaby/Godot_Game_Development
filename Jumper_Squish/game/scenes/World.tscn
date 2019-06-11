@@ -37,4 +37,8 @@ shape = SubResource( 2 )
 
 [node name="smoth_camera_movement" type="Tween" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_done" from="player2" to="." method="_on_player2_animation_done"]
 [connection signal="released" from="level_movement/TouchButton" to="player2" method="_on_TouchButton_released"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

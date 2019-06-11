@@ -31,6 +31,11 @@ var right_vel = Vector2(-1,0) setget set_right_vel
 
 #temp vars/funcs
 
+func _ready():
+	self.collision_maker()
+	self.signal_emit = true
+	self.player_collide = false
+
 func incrument_level_counter():
 	Global.set_level_num(1);
 
@@ -127,9 +132,6 @@ func player_detect_height(height):
 	player_detector_height.y = height - botom_margin
 	player_detector.set_cast_to(player_detector_height)
 	player_detector.set_position(new_pos)
-
-func _ready():
-	self.collision_maker()
  
 func incloses():
 	var check_point = right.position.x - check_point_right

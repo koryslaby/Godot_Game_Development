@@ -10,8 +10,11 @@ var spawn = Vector2(0,1333)
 var camera_start_position = Vector2()
 var max_levels = 100
 var camera_move = Vector2(0,0)
+var popup
 
 func _ready():
+	Global.set_player_dead(false)
+	Global.set_send_player_dead_signal(false)
 	print(Global.connect("player_dead", self, "_on_Global_player_dead"))
 	start.add_to_group("base")
 	randomize()
@@ -62,4 +65,12 @@ func _on_Global_player_dead():
 	var pos = Vector2(Global.screen_size.x/2, camera_start_position.y + camera_move.y)
 	add_child(new_popup)
 	new_popup.set_position(pos)
-	new_popup.show()
+	popup = new_popup
+		
+
+func _on_player2_animation_done():
+	$Timer.start(-2.5)
+
+
+func _on_Timer_timeout():
+	popup.show()
