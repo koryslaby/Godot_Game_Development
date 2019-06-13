@@ -46,7 +46,6 @@ func display_position(value):
 	position_detect.set_position(new_pos)
 #temp vars/funcs
 
-
 func get_text_height():
 	return texture_height
 
@@ -125,7 +124,7 @@ func collor_maker(left_w, left_h, right_w, right_h):
 
 func player_detect_height(height):
 	var botom_margin = 10
-	var top_margin = 6
+	var top_margin = 8
 	var pos = player_detector.get_position()
 	var new_pos = pos
 	new_pos.y = (-height/2) + top_margin
@@ -154,7 +153,8 @@ func incloses():
 
 #warning-ignore:unused_argument
 func _process(delta):
-	incloses()
+	if(inclose == true):
+		incloses()
 	var checking_player_collision = player_detector.get_collider()
 	if(checking_player_collision && player_collide == false):
 		detect_player_collision(checking_player_collision)
