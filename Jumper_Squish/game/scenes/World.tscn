@@ -17,10 +17,6 @@ script = ExtResource( 1 )
 position = Vector2( 375, 667 )
 current = true
 
-[node name="TouchButton" type="TouchScreenButton" parent="level_movement"]
-position = Vector2( 1.34595, 126.117 )
-shape = SubResource( 1 )
-
 [node name="background" type="TextureRect" parent="level_movement"]
 margin_left = -435.765
 margin_top = -714.295
@@ -28,6 +24,11 @@ margin_right = 3904.23
 margin_bottom = 5994.71
 rect_scale = Vector2( 0.23, 0.23 )
 texture = ExtResource( 2 )
+
+[node name="TouchButton" type="TouchScreenButton" parent="level_movement"]
+position = Vector2( 1.34595, 126.117 )
+shape = SubResource( 1 )
+visibility_mode = 1
 
 [node name="top" type="Node2D" parent="."]
 
@@ -48,6 +49,6 @@ position = Vector2( 375, 1237.4 )
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="released" from="level_movement/TouchButton" to="player2" method="_on_TouchButton_released"]
+[connection signal="pressed" from="level_movement/TouchButton" to="player2" method="_on_TouchButton_pressed"]
 [connection signal="animation_done" from="player2" to="." method="_on_player2_animation_done"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

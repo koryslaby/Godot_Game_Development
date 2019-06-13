@@ -26,6 +26,7 @@ func _ready():
 func random_speeds(level):
 	var speeds = [1,1.5,2,2.5,3]
 	var vel = speeds[round(rand_range(0,4))]
+	level.correct_color(vel-1)#assigning color based on speed
 	level.set_left_vel(vel)
 	level.set_right_vel(vel)
 
@@ -35,6 +36,7 @@ func spawn_levels():
 	for i in range(0,max_levels):
 		var new_level = Levels.instance()
 		add_child_below_node(top , new_level)
+		new_level.correct_color(rand_range(0,2))
 		if Global.diff_speeds == true:
 			random_speeds(new_level)
 		if Global.collors == true:

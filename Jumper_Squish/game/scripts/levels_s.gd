@@ -24,7 +24,6 @@ var check_point_right
 var check_point_left
 var texture_height = 90 setget ,get_text_height
 var level_size = ["res://assets/Level_Sizes/Level1.png", "res://assets/Level_Sizes/Level2.png","res://assets/Level_Sizes/Level3.png"]
-#var level_colors = [ Color( 1, 0, 0, 1)]
 
 var left_vel= Vector2(1,0) setget set_left_vel
 var right_vel = Vector2(-1,0) setget set_right_vel
@@ -123,13 +122,13 @@ func collor_maker(left_w, left_h, right_w, right_h):
 	right_color.rect_position.y = -right_h - offset_shift
 
 func player_detect_height(height):
-	var botom_margin = 10
-	var top_margin = 8
+	var botom_margin = 0
+	var top_margin = 10
 	var pos = player_detector.get_position()
 	var new_pos = pos
-	new_pos.y = (-height/2) + top_margin
-	player_detector_height.y = height - botom_margin
-	player_detector.set_cast_to(player_detector_height)
+	new_pos.y = (height/2) - botom_margin 
+	player_detector_height.y = height - (botom_margin + top_margin)
+	player_detector.set_cast_to(-player_detector_height)
 	player_detector.set_position(new_pos)
  
 func incloses():

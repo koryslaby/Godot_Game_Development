@@ -44,11 +44,9 @@ func _on_p_anim_animation_finished():
 	if(p_anim.get_animation() == "Jump_up"):
 		p_anim.set_animation("default")
 
-
-func _on_TouchButton_released():
-	jump = true
-
-
 func _on_player_anim_animation_finished():
 	if(p_anim.animation == "player_dead"):
 		emit_signal("animation_done")
+
+func _on_TouchButton_pressed():
+	jump = true

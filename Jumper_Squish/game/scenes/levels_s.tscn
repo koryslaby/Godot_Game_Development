@@ -10,8 +10,11 @@ resource_local_to_scene = true
 resource_local_to_scene = true
 
 [node name="levels_s" type="Node2D"]
-position = Vector2( -369.726, 110.251 )
+position = Vector2( -10.4127, 126.22 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="right" type="StaticBody2D" parent="."]
 position = Vector2( 750, 0 )
@@ -41,9 +44,9 @@ margin_bottom = 6.72131
 color = Color( 0.0509804, 0.027451, 0.0235294, 1 )
 
 [node name="player_detector" type="RayCast2D" parent="left"]
-position = Vector2( 188.834, -35.6804 )
+position = Vector2( 194, 30 )
 enabled = true
-cast_to = Vector2( 0, 30 )
+cast_to = Vector2( 0, -50 )
 
 [node name="Position" type="Label" parent="."]
 visible = false
