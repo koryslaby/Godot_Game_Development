@@ -42,5 +42,21 @@ To Do's:
 - More game modes
 - Finnish GUI.
 - Implement way for player RigidBody scene to slide with the platform when it jumps up to it.
+- Add Player pick up objects.
+- Create menu where player can edit gravity and strength of the jumper.
+- Create menu where player can choose different backgrounds and jumpers.
+- Upload to Apple game
 
-Pictures:
+# InGame Pictures:
+## This is the screen that you see in the beggining of the game. Collision display is turned on so you can see the collision
+## shapes and raycasts.
+![Image of StartScreen](https://github.com/koryslaby/Godot_Game_Development/blob/master/PhotosReadMe/StartScreen.png)
+## This Screen shows the options for each game mode.
+![Image of MenuScreen](https://github.com/koryslaby/Godot_Game_Development/blob/master/PhotosReadMe/MenuScreen.png)
+## Bellow shows what the player sees at the end if they get squished. As you can see the Collision is still there but it is set disabled after the player is killed.
+![Image of PlayerExplosion](https://github.com/koryslaby/Godot_Game_Development/blob/master/PhotosReadMe/PlayerExplosion.png)
+## The Menu that displays when after death.
+![Image of DeathMenu](https://github.com/koryslaby/Godot_Game_Development/blob/master/PhotosReadMe/DeathMenu.png)
+
+
+
