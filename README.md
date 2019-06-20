@@ -39,8 +39,8 @@ Implements:
 
 
 To Do's:
-- Work in progress
-- Everything with test textures at the moment.
-- Finnish player animation.
 - More game modes
 - Finnish GUI.
+- Implement way for player RigidBody scene to slide with the platform when it jumps up to it.
+
+Pictures:
