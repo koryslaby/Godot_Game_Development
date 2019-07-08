@@ -24,7 +24,7 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("Jump"):
 		if ground_detection.is_colliding():
-			var jump = move_and_collide(vel * jump_force)
+			var jump = move_and_collide(Vector2(0,-100))
 
 func set_colliding(colliding):
 	is_colliding = colliding

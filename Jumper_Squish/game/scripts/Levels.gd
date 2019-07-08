@@ -51,13 +51,11 @@ func _physics_process(delta):
 		var collision_info_left = left.move_and_collide(left_vel)
 		var collision_info_right = right.move_and_collide(right_vel)
 		if collision_info_left && collision_info_right && collision_info_right.collider.get_groups().has("levels"):
-			print("colliding with level")
 			set_inclose(false)
 			self.add_to_group("base")
 			emit_signal("inclosure_end")
 
 func chain():
-	print("chain")
 	self.set_inclose(true)
 	
 

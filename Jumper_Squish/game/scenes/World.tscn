@@ -35,6 +35,7 @@ visibility_mode = 1
 [node name="Start" type="StaticBody2D" parent="."]
 editor/display_folded = true
 position = Vector2( 375, 1344.68 )
+scale = Vector2( 4, 1 )
 __meta__ = {
 "_edit_group_": true
 }

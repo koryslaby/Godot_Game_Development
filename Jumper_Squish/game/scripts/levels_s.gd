@@ -10,11 +10,13 @@ onready var left_sprite = get_node("left/left_sprite")
 onready var right_sprite = get_node("right/right_sprite")
 onready var position_detect = get_node("Position")
 onready var player_detector = get_node("left/player_detector")
+onready var player_detector2 = get_node("right/player_detector2")
 var col_margin = 3
 var inclose = false setget set_inclose,get_inclose
 var next_level setget set_next_level,get_next_level
 signal inclosure_end
 signal move_camera
+signal start_chain
 var camera_mover = Vector2(0,0)
 var player_detector_height = Vector2(0,0)
 var signal_emit = true
@@ -25,10 +27,15 @@ var check_point_left
 var texture_height = 90 setget ,get_text_height
 var level_size = ["res://assets/Level_Sizes/Level1.png", "res://assets/Level_Sizes/Level2.png","res://assets/Level_Sizes/Level3.png"]
 
-var left_vel= Vector2(1,0) setget set_left_vel
-var right_vel = Vector2(-1,0) setget set_right_vel
+var left_vel= Vector2(1,0) setget set_left_vel, get_left_vel
+var right_vel = Vector2(-1,0) setget set_right_vel, get_right_vel
 
 #temp vars/funcs
+func get_left_vel():
+	return left_vel
+	
+func get_right_vel():
+	return right_vel
 
 func _ready():
 	self.collision_maker()
@@ -125,11 +132,16 @@ func player_detect_height(height):
 	var botom_margin = 0
 	var top_margin = 10
 	var pos = player_detector.get_position()
+	var pos_detector_2 = player_detector2.get_position()
 	var new_pos = pos
+	var new_pos_detector_2 = pos_detector_2
 	new_pos.y = (height/2) - botom_margin 
+	new_pos_detector_2.y = new_pos.y
 	player_detector_height.y = height - (botom_margin + top_margin)
 	player_detector.set_cast_to(-player_detector_height)
 	player_detector.set_position(new_pos)
+	player_detector2.set_cast_to(-player_detector_height)
+	player_detector2.set_position(new_pos_detector_2)
  
 func incloses():
 	var check_point = right.position.x - check_point_right
@@ -140,6 +152,8 @@ func incloses():
 		var left_pos = left.get_position()
 		right_pos += right_vel
 		left_pos += left_vel
+		$left.set_constant_linear_velocity(left_vel)
+		$right.set_constant_linear_velocity(right_vel)
 		right.set_position(right_pos)
 		left.set_position(left_pos)
 		
@@ -154,16 +168,16 @@ func incloses():
 func _process(delta):
 	if(inclose == true):
 		incloses()
-	var checking_player_collision = player_detector.get_collider()
-	if(checking_player_collision && player_collide == false):
-		detect_player_collision(checking_player_collision)
+	var checking_player_collision_checker_one = player_detector.get_collider()
+	var checking_player_collision_checker_two = player_detector2.get_collider()
+	if(checking_player_collision_checker_one && checking_player_collision_checker_two && player_collide == false):
+		detect_player_collision(checking_player_collision_checker_one, checking_player_collision_checker_two)
 		player_collide = true
 	
 
-func detect_player_collision(collision_info):
-	if(collision_info.get_groups().has("player")):
+func detect_player_collision(collision_info_one, collision_info_two):
+	if(collision_info_one.get_groups().has("player") and collision_info_two.get_groups().has("player")):
 		Global.set_player_dead(true)
-	
 
 func chain():
 	inclose = true
@@ -171,8 +185,4 @@ func chain():
 func _on_levels_s_inclosure_end():
 	if self.get_next_level() != null:
 		self.get_next_level().chain()
-
-
-
-
-
+		set_inclose(false)

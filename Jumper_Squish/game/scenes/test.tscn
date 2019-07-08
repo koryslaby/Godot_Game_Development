@@ -16,7 +16,5 @@ position = Vector2( 365.696, 574.792 )
 shape = SubResource( 1 )
 
 [node name="player2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 380.525, 443.609 )
-linear_damp = 0.0
-angular_damp = 0.0
+position = Vector2( 363, 467 )
 

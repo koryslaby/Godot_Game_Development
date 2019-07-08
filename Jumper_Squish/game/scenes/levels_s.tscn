@@ -12,11 +12,10 @@ resource_local_to_scene = true
 [node name="levels_s" type="Node2D"]
 position = Vector2( -10.4127, 126.22 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="right" type="StaticBody2D" parent="."]
+[node name="right" type="StaticBody2D" parent="." groups=[
+"ground",
+]]
 position = Vector2( 750, 0 )
 
 [node name="right_sprite" type="Sprite" parent="right"]
@@ -28,7 +27,14 @@ shape = SubResource( 1 )
 [node name="right_color" type="ColorRect" parent="right"]
 color = Color( 0.0156863, 0.00784314, 0.00784314, 1 )
 
-[node name="left" type="StaticBody2D" parent="."]
+[node name="player_detector2" type="RayCast2D" parent="right"]
+position = Vector2( -194, 30 )
+enabled = true
+cast_to = Vector2( 0, -50 )
+
+[node name="left" type="StaticBody2D" parent="." groups=[
+"ground",
+]]
 
 [node name="left_sprite" type="Sprite" parent="left"]
 texture = ExtResource( 2 )

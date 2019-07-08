@@ -25,7 +25,6 @@ func _ready():
 	Global.set_diff_speeds(false)
 	Global.set_diff_heights(false)
 	Global.set_collors(false)
-	print("screen size is: ", screen_size)
 	Global.set_screen_size(screen_size)
 	
 	var start = self.spawn_show_levels()

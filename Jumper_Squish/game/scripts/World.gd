@@ -6,6 +6,7 @@ onready var start = get_node("Start")
 onready var camera = get_node("level_movement")
 onready var camera_tween = get_node("smoth_camera_movement")
 onready var top = get_node("top")
+onready var player = get_node("player2")
 var spawn = Vector2(0,1333)
 var camera_start_position = Vector2()
 var max_levels = 100
@@ -17,6 +18,7 @@ func _ready():
 	Global.set_send_player_dead_signal(false)
 	print(Global.connect("player_dead", self, "_on_Global_player_dead"))
 	start.add_to_group("base")
+	player.side_move = true
 	randomize()
 	
 	var start = self.spawn_levels()
