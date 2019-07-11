@@ -16,7 +16,7 @@ var inclose = false setget set_inclose,get_inclose
 var next_level setget set_next_level,get_next_level
 signal inclosure_end
 signal move_camera
-signal start_chain
+#signal start_chain
 var camera_mover = Vector2(0,0)
 var player_detector_height = Vector2(0,0)
 var signal_emit = true
@@ -26,9 +26,11 @@ var check_point_right
 var check_point_left
 var texture_height = 90 setget ,get_text_height
 var level_size = ["res://assets/Level_Sizes/Level1.png", "res://assets/Level_Sizes/Level2.png","res://assets/Level_Sizes/Level3.png"]
+var offset = 80#used to control distance for level inclosure.
 
-var left_vel= Vector2(1,0) setget set_left_vel, get_left_vel
-var right_vel = Vector2(-1,0) setget set_right_vel, get_right_vel
+
+var left_vel= Vector2(3,0) setget set_left_vel, get_left_vel
+var right_vel = Vector2(-3,0) setget set_right_vel, get_right_vel
 
 #temp vars/funcs
 func get_left_vel():
@@ -93,8 +95,8 @@ func correct_color(setter):
 	left_color.color = random_hights_colors[setter]
 
 func ChangePositionInParent(height):
-	var new_pos_left = Vector2(0,height)
-	var new_pos_right = Vector2(Global.get_screen_size().x, height)
+	var new_pos_left = Vector2((0 - offset),height)
+	var new_pos_right = Vector2(Global.get_screen_size().x+offset, height)
 	left.set_position(new_pos_left)
 	right.set_position(new_pos_right)
 

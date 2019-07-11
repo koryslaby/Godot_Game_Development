@@ -3,13 +3,10 @@ extends RigidBody2D
 onready var collision = get_node("player_collision")
 onready var p_anim = get_node("player_anim")
 onready var gd = get_node("ground_detector")
-onready var l_detect = get_node("left_detect")
-onready var r_detect = get_node("right_detect")
 onready var explosion = get_node("explosions")
-var offset = Vector2(0,0)
-var impulse = Vector2(0,-400)
+#var impulse = Vector2(0,-400)
 var jump = false
-var slide_motion = 4
+var slide_motion = 63
 signal animation_done
 var side_move = false
 
@@ -33,11 +30,10 @@ func _physics_process(delta):
 	var right_collider_check = $right_detect.get_collider()
 	if(right_collider_check):
 		if(right_collider_check.get_groups().has("ground") and right_collider_check.get_parent().get_inclose() == true):
-			print("right_collider_check.get_constant_linear_velocity(): ", right_collider_check.get_constant_linear_velocity())
-			linear_velocity.x += right_collider_check.get_constant_linear_velocity().x * slide_motion
+			linear_velocity.x = right_collider_check.get_constant_linear_velocity().x * slide_motion#may replace with right_collider_check.get_parent().get_left_vel() 
 	if(left_collider_check):
 		if(left_collider_check.get_groups().has("ground") and left_collider_check.get_parent().get_inclose() == true):
-			linear_velocity.x += left_collider_check.get_constant_linear_velocity().x * slide_motion
+			linear_velocity.x = left_collider_check.get_constant_linear_velocity().x * slide_motion
 
 
 func _input(event): # This handles any input for player control

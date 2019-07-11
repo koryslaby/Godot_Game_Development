@@ -16,7 +16,7 @@ script = ExtResource( 1 )
 [node name="right" type="StaticBody2D" parent="." groups=[
 "ground",
 ]]
-position = Vector2( 750, 0 )
+position = Vector2( 800, 0 )
 
 [node name="right_sprite" type="Sprite" parent="right"]
 texture = ExtResource( 2 )
@@ -35,6 +35,7 @@ cast_to = Vector2( 0, -50 )
 [node name="left" type="StaticBody2D" parent="." groups=[
 "ground",
 ]]
+position = Vector2( -50, 0 )
 
 [node name="left_sprite" type="Sprite" parent="left"]
 texture = ExtResource( 2 )
