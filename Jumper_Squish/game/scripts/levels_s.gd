@@ -26,7 +26,7 @@ var check_point_right
 var check_point_left
 var texture_height = 90 setget ,get_text_height
 var level_size = ["res://assets/Level_Sizes/Level1.png", "res://assets/Level_Sizes/Level2.png","res://assets/Level_Sizes/Level3.png"]
-var offset = 80#used to control distance for level inclosure.
+
 
 
 var left_vel= Vector2(3,0) setget set_left_vel, get_left_vel
@@ -95,8 +95,8 @@ func correct_color(setter):
 	left_color.color = random_hights_colors[setter]
 
 func ChangePositionInParent(height):
-	var new_pos_left = Vector2((0 - offset),height)
-	var new_pos_right = Vector2(Global.get_screen_size().x+offset, height)
+	var new_pos_left = Vector2((0 - Global.offset),height)
+	var new_pos_right = Vector2(Global.get_screen_size().x+Global.offset, height)
 	left.set_position(new_pos_left)
 	right.set_position(new_pos_right)
 

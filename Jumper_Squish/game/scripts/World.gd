@@ -2,6 +2,7 @@ extends Node2D
 
 onready var Levels = preload("res://scenes/levels_s.tscn")
 onready var player_died_popup = preload("res://scenes/player_died.tscn")
+onready var pickup_coins = preload("res://scenes/PickupCoins.tscn")
 onready var start = get_node("Start")
 onready var camera = get_node("level_movement")
 onready var camera_tween = get_node("smoth_camera_movement")
@@ -32,9 +33,18 @@ func random_speeds(level):
 	level.set_left_vel(vel)
 	level.set_right_vel(vel)
 
+# used to spawn pickup coinds in a given range determined by how many levels are spawned.
+func spawn_pickup_coins(spawn_position):  
+	var new_pickup_coin = pickup_coins.instance()
+	add_child_below_node(top , new_pickup_coin)
+	var spawn_pos = spawn_position
+	new_pickup_coin.position = spawn_pos
+		
+	
 func spawn_levels():
 	var last_level
 	var start
+	
 	for i in range(0,max_levels):
 		var new_level = Levels.instance()
 		add_child_below_node(top , new_level)
@@ -53,6 +63,7 @@ func spawn_levels():
 			start = new_level
 		last_level = new_level
 		new_level.connect("move_camera", self, "_on_new_level_move_camera")
+	
 		
 		
 	return start
@@ -63,6 +74,10 @@ func _on_new_level_move_camera(camera_mover):
 	camera_tween.start()
 	camera_start_position = camera_movement
 	camera_move = camera_mover
+	var middle_screen = (get_viewport().size.x+Global.get_offset())
+	var top_screen = $level_movement.position.y-get_viewport().size.y+Global.get_offset()
+	var coin_spawn_pos = Vector2(rand_range(Global.get_offset()+90, (middle_screen)), top_screen)
+	spawn_pickup_coins(coin_spawn_pos)
 
 func _on_Global_player_dead():
 	var new_popup = player_died_popup.instance()

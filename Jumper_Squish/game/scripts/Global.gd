@@ -7,6 +7,7 @@ var level = 0 setget set_level_num,get_level_num
 var screen_size = Vector2(750,1333) setget set_screen_size,get_screen_size
 var player_dead = false setget set_player_dead, get_player_dead
 var send_player_dead_signal = false setget set_send_player_dead_signal
+var offset = 80 setget ,get_offset#used to control distance for level inclosure.
 signal player_dead
 
 #warning-ignore:unused_argument
@@ -14,6 +15,9 @@ func _process(delta):
 	if(send_player_dead_signal == false && player_dead == true):
 		emit_signal("player_dead")
 		send_player_dead_signal = true
+
+func get_offset():
+	return offset
 
 func set_send_player_dead_signal(setter):
 	send_player_dead_signal = setter

@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/PopUpMenuButton.png" type="Texture" id=3]
 
 [node name="player_died" type="PopupMenu"]
+visible = true
 margin_right = 20.0
 margin_bottom = 20.0
 script = ExtResource( 1 )
