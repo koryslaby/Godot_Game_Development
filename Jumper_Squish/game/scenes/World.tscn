@@ -26,6 +26,7 @@ rect_scale = Vector2( 0.23, 0.23 )
 texture = ExtResource( 2 )
 
 [node name="TouchButton" type="TouchScreenButton" parent="level_movement"]
+visible = false
 position = Vector2( 1.34595, 126.117 )
 shape = SubResource( 1 )
 visibility_mode = 1
