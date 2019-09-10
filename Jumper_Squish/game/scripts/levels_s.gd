@@ -14,6 +14,7 @@ onready var player_detector2 = get_node("right/player_detector2")
 var col_margin = 3
 var inclose = false setget set_inclose,get_inclose
 var next_level setget set_next_level,get_next_level
+var level_id setget set_level_id,get_level_id
 signal inclosure_end
 signal move_camera
 #signal start_chain
@@ -33,6 +34,12 @@ var left_vel= Vector2(3,0) setget set_left_vel, get_left_vel
 var right_vel = Vector2(-3,0) setget set_right_vel, get_right_vel
 
 #temp vars/funcs
+func get_level_id():
+	return level_id
+	
+func set_level_id(setter):
+	level_id = setter
+	
 func get_left_vel():
 	return left_vel
 	
@@ -161,7 +168,10 @@ func incloses():
 		
 	if check_point <= screen_half && signal_emit == true:
 		emit_signal("inclosure_end")
-		if Global.player_dead == false:
+		print("get_level_id is: ", get_level_id())
+		print("Global player dead is: ", Global.player_dead)
+		if Global.player_dead == false and get_level_id() > 2:
+			print("emitting signal")
 			emit_signal("move_camera", camera_mover)
 		
 		signal_emit = false

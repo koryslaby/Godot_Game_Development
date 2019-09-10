@@ -3,6 +3,7 @@ extends Control
 #var scene = load("res://scenes/World.tscn")
 onready var screen_size = self.get_viewport_rect().size
 onready var Levels = preload("res://scenes/levels_s.tscn")
+onready var game_world = preload("res://scenes/World.tscn")#preloading for faster load times.
 var spawn = Vector2(0,1333)
 
 func spawn_show_levels():
@@ -10,6 +11,7 @@ func spawn_show_levels():
 	var start
 	for i in range(0,15):
 		var new_level = Levels.instance()
+		new_level.set_level_id(i)
 		add_child_below_node($Background , new_level)
 		new_level.randome_level_heights()
 		spawn.y -= new_level.get_text_height()
@@ -33,14 +35,14 @@ func _ready():
 
 func _on_Button1_button_up():
 	Global.set_diff_speeds(true)
-	print(get_tree().change_scene("res://scenes/World.tscn"))
+	get_tree().change_scene("res://scenes/World.tscn")
 
 
 func _on_Button2_button_up():
 	Global.set_diff_heights(true)
-	print(get_tree().change_scene("res://scenes/World.tscn"))
+	get_tree().change_scene("res://scenes/World.tscn")
 
 
 func _on_Button3_button_up():
 	Global.set_collors(true)
-	print( get_tree().change_scene("res://scenes/World.tscn"))
+	get_tree().change_scene("res://scenes/World.tscn")
