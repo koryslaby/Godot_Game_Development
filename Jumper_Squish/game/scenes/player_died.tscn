@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/PopUpMenuButton.png" type="Texture" id=3]
 
 [node name="player_died" type="PopupMenu"]
-visible = true
 margin_right = 20.0
 margin_bottom = 20.0
 script = ExtResource( 1 )
@@ -20,4 +19,15 @@ margin_right = 239.612
 margin_bottom = 327.365
 texture_normal = ExtResource( 3 )
 
+[node name="GameInfo" type="TextEdit" parent="."]
+margin_left = -248.0
+margin_top = -90.0
+margin_right = -4.0
+margin_bottom = 16.0
+rect_scale = Vector2( 2, 2 )
+text = "testing"
+v_scroll_speed = 0.0
+wrap_enabled = true
+
 [connection signal="button_up" from="MenuButton" to="." method="_on_MenuButton_button_up"]
+[connection signal="visibility_changed" from="GameInfo" to="." method="_on_GameInfo_visibility_changed"]

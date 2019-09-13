@@ -9,9 +9,23 @@ var player_dead = false setget set_player_dead, get_player_dead
 var send_player_dead_signal = false setget set_send_player_dead_signal
 var offset = 80 setget ,get_offset#used to control distance for level inclosure.
 var max_levels = 100 setget ,get_max_levels
+var points = 0 setget set_points,get_points
+var max_level = 0 setget set_max_level,get_max_level
 signal player_dead
 
 #warning-ignore:unused_argument
+func get_max_level():
+	return max_level
+
+func set_max_level(setter):
+	max_level = setter
+
+func set_points(setter):
+	points = setter
+
+func get_points():
+	return points
+
 func get_max_levels():
 	return max_levels
 	

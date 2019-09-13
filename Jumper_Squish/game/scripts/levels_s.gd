@@ -17,7 +17,7 @@ var next_level setget set_next_level,get_next_level
 var level_id setget set_level_id,get_level_id
 signal inclosure_end
 signal move_camera
-#signal start_chain
+var award = 1
 var camera_mover = Vector2(0,0)
 var player_detector_height = Vector2(0,0)
 var signal_emit = true
@@ -85,6 +85,7 @@ func set_inclose(value):
 func randome_level_heights():
 	randomize()
 	var size = round(rand_range(0,2))
+	award = size
 	var texture = load(level_size[size])
 	left_sprite.set_texture(texture)
 	right_sprite.set_texture(texture)
@@ -198,3 +199,8 @@ func _on_levels_s_inclosure_end():
 	if self.get_next_level() != null:
 		self.get_next_level().chain()
 		set_inclose(false)
+		print(Global.get_points()+award)
+		print(level_id)
+		if(Global.get_player_dead() == false):
+			Global.set_points(Global.get_points()+award)
+			Global.set_max_level(level_id)

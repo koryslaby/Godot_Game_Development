@@ -17,23 +17,15 @@ func _ready():
 	self.set_mode(RigidBody2D.MODE_CHARACTER)
 	explosion.set_emitting(false)
 	collision.set_disabled(false)
-#warning-ignore:integer_division
-	#collision.shape.extents.x = int(p_anim.get_sprite_frames().get_frame("default", 0).get_height())/2
-#warning-ignore:integer_division
-	#collision.shape.extents.y = int(p_anim.get_sprite_frames().get_frame("default", 0).get_width())/2
 	collision.shape.set_radius(int(p_anim.get_sprite_frames().get_frame("default", 0).get_height())/2)
 	set_process_input(true)
 
 #warning-ignore:unused_argument
 func _physics_process(delta):
-	var left_collider_check = $left_detect.get_collider()
-	var right_collider_check = $right_detect.get_collider()
-	if(right_collider_check):
-		if(right_collider_check.get_groups().has("ground") and right_collider_check.get_parent().get_inclose() == true):
-			linear_velocity.x = right_collider_check.get_constant_linear_velocity().x * slide_motion#may replace with right_collider_check.get_parent().get_left_vel() 
-	if(left_collider_check):
-		if(left_collider_check.get_groups().has("ground") and left_collider_check.get_parent().get_inclose() == true):
-			linear_velocity.x = left_collider_check.get_constant_linear_velocity().x * slide_motion
+	var slide = $slide_detect.get_collider()
+	if(slide):
+		if(slide.get_groups().has("ground") and slide.get_parent().get_inclose() == true):
+			linear_velocity.x = slide.get_constant_linear_velocity().x * slide_motion#may replace with right_collider_check.get_parent().get_left_vel() 
 
 
 func _input(event): # This handles any input for player control
