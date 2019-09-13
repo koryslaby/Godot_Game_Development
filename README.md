@@ -36,15 +36,17 @@ Implements:
 - Animated Sprite 
 - The use of signals to trigger animations and game actions.
 - Global script for variables that can be past between scenes.
+- Implement way for player RigidBody scene to slide with the platform when it jumps up to it.
+- Add Player pick up objects.
 
 
 To Do's:
 - More game modes
 - Finnish GUI.
-- Implement way for player RigidBody scene to slide with the platform when it jumps up to it.
-- Add Player pick up objects.
+- Create Huds display for when player is in a level
 - Create menu where player can edit gravity and strength of the jumper.
 - Create menu where player can choose different backgrounds and jumpers.
+- Also a menu where the player can choose to use the phone tilt or touch buttons to controls.
 - Upload to Apple game
 
 # InGame Pictures:
