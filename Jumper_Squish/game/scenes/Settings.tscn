@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/bernard-hermant-560223-unsplash.png" type="Texture" id=1]
+[ext_resource path="res://assets/MButtonsGeneric.png" type="Texture" id=2]
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.365173
+margin_right = 0.365173
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 750.0
+margin_bottom = 1334.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -92.0
+margin_right = 160.0
+margin_bottom = 92.0
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 90.0
+texture_normal = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TextureButton2"]
+margin_left = 103.0
+margin_top = 31.0
+margin_right = 160.0
+margin_bottom = 44.0
+rect_scale = Vector2( 2, 2 )
+text = "Controls"
+scroll_active = false
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+anchor_right = 0.4
+margin_top = 94.0
+margin_right = 192.0
+margin_bottom = 184.0
+texture_normal = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TextureButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -47.9042
+margin_top = -19.535
+margin_right = 1.09583
+margin_bottom = -1.53497
+rect_scale = Vector2( 2, 2 )
+text = "Ability"
+

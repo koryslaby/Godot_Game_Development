@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Start_Screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/bernard-hermant-560223-unsplash.png" type="Texture" id=2]
 [ext_resource path="res://assets/Title_Pic.png" type="Texture" id=3]
 [ext_resource path="res://assets/Start_Button.png" type="Texture" id=4]
 [ext_resource path="res://scenes/test.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/settings.png" type="Texture" id=6]
 
 [node name="Start_Screen" type="Control"]
 anchor_right = 1.0
@@ -61,4 +62,30 @@ expand = true
 [node name="test" parent="." instance=ExtResource( 5 )]
 position = Vector2( 7.35632, 490.253 )
 
+[node name="TextureButton" type="TextureButton" parent="."]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -107.424
+margin_top = -64.7337
+margin_right = 392.576
+margin_bottom = 435.266
+rect_scale = Vector2( 0.4, 0.2 )
+texture_normal = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="TextureButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -102.24
+margin_top = -45.9064
+margin_right = -51.2396
+margin_bottom = -14.9064
+rect_scale = Vector2( 4, 6 )
+text = "Settings"
+
 [connection signal="button_up" from="Start_Button_Cont/Start_Button" to="." method="_on_Start_Button_button_up"]
+[connection signal="button_up" from="TextureButton" to="." method="_on_TextureButton_button_up"]

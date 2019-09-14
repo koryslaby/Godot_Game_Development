@@ -13,6 +13,7 @@ var points = 0 setget set_points,get_points
 var max_level = 0 setget set_max_level,get_max_level
 signal player_dead
 
+
 #warning-ignore:unused_argument
 func get_max_level():
 	return max_level

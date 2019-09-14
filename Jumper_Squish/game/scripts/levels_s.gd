@@ -47,6 +47,7 @@ func get_right_vel():
 	return right_vel
 
 func _ready():
+	Global.set_level_num(0)
 	self.collision_maker()
 	self.signal_emit = true
 	self.player_collide = false
